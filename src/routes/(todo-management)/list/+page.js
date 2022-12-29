@@ -1,18 +1,14 @@
-export async function load({ fetch, url }) {
+export async function load({ fetch, url, setHeaders }) {
 	const search = url.searchParams.get('search') || '';
 
-	let header = {};
+	let headers = {};
 	if (typeof window === 'object') {
-		if (!localStorage.getItem('todos-cache')) {
-			localStorage.setItem('todos-cache', +new Date());
-		}
-
-		header['todo-cache'] = localStorage.getItem('todos-cache');
+		headers['todos-cache'] = localStorage.getItem('todos-cache');
 	}
 
 	const resp = await fetch(`/api/todos?search=${encodeURIComponent(search)}`, {
 		headers: {
-			...header
+			...headers
 		}
 	});
 

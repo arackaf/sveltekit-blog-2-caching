@@ -2,6 +2,10 @@
 	import { page } from '$app/stores';
 
 	$: ({ todos, tags } = $page.data);
+
+	function invalidate() {
+		localStorage.setItem('todos-cache', +new Date());
+	}
 </script>
 
 <div class="search-form">
@@ -9,6 +13,10 @@
 		<input name="search" />
 	</form>
 </div>
+
+<br />
+<button on:click={invalidate}>Invalidate</button>
+<br />
 
 <table cellspacing="10" cellpadding="10">
 	<thead>
