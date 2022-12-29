@@ -1,9 +1,16 @@
 import { json } from '@sveltejs/kit';
 
-export async function GET({ url }) {
+import { getTodos } from '$lib/data/todoData';
+
+export async function GET({ url, setHeaders }) {
 	const search = url.searchParams.get('search') || '';
 
-	console.log('search', search);
+	setHeaders({
+		'cache-control': 'max-age=60',
+		Vary: 'todos-cache'
+	});
 
-	return json({});
+	const todos = await getTodos(search);
+
+	return json(todos);
 }

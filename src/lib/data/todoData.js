@@ -23,7 +23,7 @@ export const wait = async amount => new Promise(res => setTimeout(res, amount ??
 export async function getTodos(search) {
 	await wait();
 
-	return todos.filter(todo => !search || new RegExp(search, 'i').test(todo));
+	return todos.filter(todo => !search || new RegExp(search, 'i').test(todo.title));
 }
 
 export async function getTags() {

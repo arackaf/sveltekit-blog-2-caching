@@ -4,6 +4,12 @@
 	$: ({ todos, tags } = $page.data);
 </script>
 
+<div class="search-form">
+	<form action="/list">
+		<input name="search" />
+	</form>
+</div>
+
 <table cellspacing="10" cellpadding="10">
 	<thead>
 		<tr>
@@ -17,7 +23,7 @@
 		{#each todos as t}
 			<tr>
 				<td>{t.title}</td>
-				<td>{t.tags.map((id) => tags[id].name).join(', ')}</td>
+				<td>{t.tags.map(id => tags[id].name).join(', ')}</td>
 				<td>{t.assigned}</td>
 				<td><a href={`/details?id=${t.id}`}>Edit</a></td>
 			</tr>
@@ -28,5 +34,9 @@
 <style>
 	th {
 		text-align: left;
+	}
+
+	.search-form {
+		margin: 20px;
 	}
 </style>
