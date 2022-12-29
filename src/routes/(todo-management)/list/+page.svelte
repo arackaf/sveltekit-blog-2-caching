@@ -10,7 +10,7 @@
 
 <div class="search-form">
 	<form action="/list">
-		<input name="search" />
+		<input autofocus name="search" />
 	</form>
 </div>
 
