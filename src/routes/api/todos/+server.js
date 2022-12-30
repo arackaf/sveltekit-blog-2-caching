@@ -1,5 +1,4 @@
 import { json } from '@sveltejs/kit';
-
 import { getTodos } from '$lib/data/todoData';
 
 export async function GET({ url, setHeaders, request }) {
