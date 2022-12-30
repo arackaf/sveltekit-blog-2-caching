@@ -11,6 +11,7 @@
 
 <div class="search-form">
 	<form action="/list">
+		<label>Search</label>
 		<input autofocus name="search" />
 	</form>
 </div>
