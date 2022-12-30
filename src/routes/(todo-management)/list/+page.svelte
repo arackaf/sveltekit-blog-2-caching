@@ -1,9 +1,10 @@
 <script>
 	import { page } from '$app/stores';
+	import { enhance } from '$app/forms';
 
 	$: ({ todos, tags } = $page.data);
 
-	function invalidate() {
+	function runInvalidate() {
 		localStorage.setItem('todos-cache', +new Date());
 	}
 </script>
@@ -15,7 +16,7 @@
 </div>
 
 <br />
-<button on:click={invalidate}>Invalidate</button>
+<button on:click={runInvalidate}>Invalidate</button>
 <br />
 
 <table cellspacing="10" cellpadding="10">
@@ -34,6 +35,15 @@
 				<td>{t.tags.map(id => tags[id].name).join(', ')}</td>
 				<td>{t.assigned}</td>
 				<td><a href={`/details?id=${t.id}`}>Edit</a></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<form use:enhance method="post" action="?/editTodo">
+						<input name="id" value={t.id} type="hidden" />
+						<input name="title" value={t.title} />
+						<button>Save</button>
+					</form>
+				</td>
 			</tr>
 		{/each}
 	</tbody>
