@@ -7,12 +7,12 @@ export async function GET({ url, setHeaders, request }) {
 
 	const currentCacheBust = request.headers.get('todos-cache');
 
-	if (currentCacheBust) {
-		setHeaders({
-			'cache-control': 'max-age=60',
-			Vary: 'todos-cache'
-		});
-	}
+	//if (currentCacheBust) {
+	setHeaders({
+		'cache-control': 'max-age=60',
+		Vary: 'todos-cache'
+	});
+	//}
 
 	const todos = await getTodos(search);
 

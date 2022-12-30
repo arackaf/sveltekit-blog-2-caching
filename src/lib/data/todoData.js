@@ -18,7 +18,7 @@ let tags = [
 	{ id: 6, name: 'Next', color: 'orange' }
 ];
 
-export const wait = async amount => new Promise(res => setTimeout(res, amount ?? 500));
+export const wait = async amount => new Promise(res => setTimeout(res, amount ?? 1000));
 
 export async function getTodos(search) {
 	await wait();
