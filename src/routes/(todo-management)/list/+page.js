@@ -7,9 +7,7 @@ export async function load({ fetch, url, setHeaders }) {
 	}
 
 	const resp = await fetch(`/api/todos?search=${encodeURIComponent(search)}`, {
-		headers: {
-			...headers
-		}
+		headers
 	});
 
 	const todos = await resp.json();
