@@ -1,6 +1,3 @@
-var x = 1;
-var y = 1;
-
 import { getTodo, updateTodo, wait } from '$lib/data/todoData';
 
 export const actions = {

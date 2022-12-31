@@ -16,10 +16,6 @@
 	</form>
 </div>
 
-<br />
-<button on:click={runInvalidate}>Invalidate</button>
-<br />
-
 <table cellspacing="10" cellpadding="10">
 	<thead>
 		<tr>
