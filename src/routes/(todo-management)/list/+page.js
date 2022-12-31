@@ -1,3 +1,5 @@
+import { writable } from 'svelte/store';
+
 export async function load({ fetch, url, setHeaders }) {
 	const search = url.searchParams.get('search') || '';
 
@@ -13,6 +15,6 @@ export async function load({ fetch, url, setHeaders }) {
 	const todos = await resp.json();
 
 	return {
-		todos
+		todos: writable(todos)
 	};
 }
