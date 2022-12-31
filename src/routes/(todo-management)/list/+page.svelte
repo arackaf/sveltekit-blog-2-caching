@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<form use:enhance method="post" action="?/editTodo">
+					<form use:enhance on:submit={runInvalidate} method="post" action="?/editTodo">
 						<input name="id" value={t.id} type="hidden" />
 						<input name="title" value={t.title} />
 						<button>Save</button>
