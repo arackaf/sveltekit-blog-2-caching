@@ -1,11 +1,3 @@
-<script>
-	import { onMount } from 'svelte';
-
-	onMount(() => {
-		localStorage.setItem('todos-cache', +new Date());
-	});
-</script>
-
 <nav>
 	<ul>
 		<li>
