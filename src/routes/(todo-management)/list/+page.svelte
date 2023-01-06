@@ -3,7 +3,8 @@
 	import { enhance } from '$app/forms';
 	import { invalidate } from '$app/navigation';
 
-	$: ({ todos, tags } = $page.data);
+	export let data;
+	$: ({ todos, tags } = data);
 
 	let reloading = false;
 	const reloadTodos = () => {
