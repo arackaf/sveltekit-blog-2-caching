@@ -15,12 +15,19 @@
 			});
 		};
 	};
+
+	$: currentSearch = $page.url.searchParams.get('search') || '';
 </script>
 
 <div class="search-form">
 	<form action="/list">
 		<label>Search</label>
-		<input autofocus name="search" />
+		<input
+			autofocus
+			name="search"
+			on:blur={evt => (evt.target.value = currentSearch)}
+			value={currentSearch}
+		/>
 	</form>
 </div>
 
