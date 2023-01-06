@@ -1,14 +1,35 @@
 <script>
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
+	import { invalidate } from '$app/navigation';
 
 	$: ({ todos, tags } = $page.data);
+
+	let reloading = false;
+	const reloadTodos = () => {
+		reloading = true;
+
+		return async () => {
+			invalidate('reload-todos').then(() => {
+				reloading = false;
+			});
+		};
+	};
 </script>
 
 <div class="search-form">
 	<form action="/list">
 		<label>Search</label>
 		<input autofocus name="search" />
+	</form>
+</div>
+
+<div class="reload-container">
+	{#if reloading}
+		<span>Reloading ...</span>
+	{/if}
+	<form method="POST" action="?/reloadTodos" use:enhance={reloadTodos}>
+		<button>Reload todos</button>
 	</form>
 </div>
 
@@ -47,7 +68,8 @@
 		text-align: left;
 	}
 
-	.search-form {
+	.search-form,
+	.reload-container {
 		margin: 20px;
 	}
 </style>

@@ -2,7 +2,8 @@ import { writable } from 'svelte/store';
 
 import { getCurrentCookieValue } from '$lib/util/cookieUtils';
 
-export async function load({ fetch, url, setHeaders }) {
+export async function load({ fetch, url, setHeaders, depends }) {
+	depends('reload-todos');
 	const search = url.searchParams.get('search') || '';
 
 	let headers = {};
