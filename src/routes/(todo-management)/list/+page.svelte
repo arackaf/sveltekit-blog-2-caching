@@ -56,7 +56,7 @@
 				<td>{t.title}</td>
 				<td>{t.tags.map(id => tags[id].name).join(', ')}</td>
 				<td>{t.assigned}</td>
-				<td><a href={`/details?id=${t.id}`}>Edit</a></td>
+				<td><a href="/details?id={t.id}">Edit</a></td>
 			</tr>
 			<tr>
 				<td colspan="4">
