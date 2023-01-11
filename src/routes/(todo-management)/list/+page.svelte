@@ -4,27 +4,6 @@
 
 	$: ({ todos, tags } = $page.data);
 
-	function runInvalidate() {
-		localStorage.setItem('todos-cache', +new Date());
-	}
-
-	function executeSave({ data }) {
-		const id = data.get('id');
-		const title = data.get('title');
-
-		return async () => {
-			todos.update(list =>
-				list.map(todo => {
-					if (todo.id == id) {
-						return Object.assign({}, todo, { title });
-					} else {
-						return todo;
-					}
-				})
-			);
-		};
-	}
-
 	$: currentSearch = $page.url.searchParams.get('search') || '';
 </script>
 
@@ -50,7 +29,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each $todos as t}
+		{#each todos as t}
 			<tr>
 				<td>{t.title}</td>
 				<td>{t.tags.map(id => tags[id].name).join(', ')}</td>
@@ -59,12 +38,7 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<form
-						use:enhance={executeSave}
-						on:submit={runInvalidate}
-						method="post"
-						action="?/editTodo"
-					>
+					<form use:enhance method="post" action="?/editTodo">
 						<input name="id" value={t.id} type="hidden" />
 						<input name="title" value={t.title} />
 						<button>Save</button>

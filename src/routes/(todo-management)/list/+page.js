@@ -1,20 +1,17 @@
 import { writable } from 'svelte/store';
 
-export async function load({ fetch, url, setHeaders }) {
+import { getCurrentCookieValue } from '$lib/util/cookieUtils';
+
+export async function load({ fetch, parent, url, setHeaders }) {
+	const parentData = await parent();
+
+	const cacheBust = getCurrentCookieValue('todos-cache') || parentData.todosCacheBust;
 	const search = url.searchParams.get('search') || '';
 
-	let headers = {};
-	if (typeof window === 'object') {
-		headers['todos-cache'] = localStorage.getItem('todos-cache');
-	}
-
-	const resp = await fetch(`/api/todos?search=${encodeURIComponent(search)}`, {
-		headers
-	});
-
+	const resp = await fetch(`/api/todos?search=${encodeURIComponent(search)}&cache=${cacheBust}`);
 	const todos = await resp.json();
 
 	return {
-		todos: writable(todos)
+		todos
 	};
 }
