@@ -4,7 +4,7 @@ export const actions = {
 	async reloadTodos({ cookies }) {
 		cookies.set('todos-cache', +new Date(), { path: '/', httpOnly: false });
 	},
-	async editTodo({ request }) {
+	async editTodo({ request, cookies }) {
 		const formData = await request.formData();
 
 		const id = formData.get('id');
@@ -12,5 +12,7 @@ export const actions = {
 
 		await wait(250);
 		updateTodo(id, newTitle);
+
+		cookies.set('todos-cache', +new Date(), { path: '/', httpOnly: false });
 	}
 };

@@ -4,7 +4,6 @@ import { getTodo, updateTodo, wait } from '$lib/data/todoData';
 export function load({ url }) {
 	const id = url.searchParams.get('id');
 
-	console.log(id);
 	const todo = getTodo(id);
 
 	return {
