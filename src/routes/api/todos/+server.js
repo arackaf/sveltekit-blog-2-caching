@@ -5,8 +5,7 @@ export async function GET({ url, setHeaders, request }) {
 	const search = url.searchParams.get('search') || '';
 
 	setHeaders({
-		'cache-control': 'max-age=60',
-		Vary: 'todos-cache'
+		'cache-control': 'max-age=60'
 	});
 
 	const todos = await getTodos(search);
