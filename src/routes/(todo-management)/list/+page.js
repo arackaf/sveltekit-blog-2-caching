@@ -2,7 +2,8 @@ import { writable } from 'svelte/store';
 
 import { getCurrentCookieValue } from '$lib/util/cookieUtils';
 
-export async function load({ fetch, parent, url, setHeaders }) {
+export async function load({ fetch, parent, url, setHeaders, depends }) {
+	depends('reload-todos');
 	const parentData = await parent();
 
 	const cacheBust = getCurrentCookieValue('todos-cache') || parentData.todosCacheBust;
