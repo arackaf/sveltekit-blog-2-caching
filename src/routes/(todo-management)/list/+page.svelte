@@ -29,7 +29,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each todos as t}
+		{#each $todos as t}
 			<tr>
 				<td>{t.title}</td>
 				<td>{t.tags.map(id => tags[id].name).join(', ')}</td>

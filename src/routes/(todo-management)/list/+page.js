@@ -12,6 +12,6 @@ export async function load({ fetch, parent, url, setHeaders }) {
 	const todos = await resp.json();
 
 	return {
-		todos
+		todos: writable(todos)
 	};
 }
