@@ -11,7 +11,7 @@
 		reloading = true;
 
 		return async () => {
-			invalidate('reload-todos').then(() => {
+			invalidate('reload:todos').then(() => {
 				reloading = false;
 			});
 		};
